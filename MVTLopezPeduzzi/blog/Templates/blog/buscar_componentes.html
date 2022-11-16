@@ -1,0 +1,14 @@
+<form action="" method="get">
+
+    <input type="text" name="marca">
+    <input type="submit" value="Buscar">
+
+</form>
+
+{% if error %}
+<p>{{error}}</p>
+{% endif %}
+
+{% if componentes %}
+<p>{{componentes.marca}} {{componentes.Watts}}</p>
+{% endif %}
