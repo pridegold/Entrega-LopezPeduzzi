@@ -1,12 +1,18 @@
-{% for placas in object_list %} 
+{% for tarjeta in object_list %} 
 
     <ul>
         <li>
+             {{tarjeta}}
+            <button>
 
-            {{placas}}
+                <a href="{% url 'Detail' tarjeta.id %}"> Ver Detalles</a>
+            
+            
+            </button>
+            
 
         </li>
     </ul>    
 
-{% endfor%}
+{% endfor %}
 

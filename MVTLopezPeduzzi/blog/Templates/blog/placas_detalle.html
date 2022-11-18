@@ -1,15 +1,12 @@
-{% for tarjetas in tarjeta %}
-
-
-
-
 <p>
-    id: {{tarjetas.id}}
-    Nombre: {{tarjetas.nombre}}  Marca: {{tarjetas.marca}}</p>
+    {{tarjetas.nombre}} {{tarjetas.marca}}</p>
+
 
 <button>
 
-    <a href="{% url 'List' tarjetas.id %}"> Ver Detalles</a>
+    <a href="{% url 'List' %}"> Regresar</a>
 
 
 </button>
+
+

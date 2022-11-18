@@ -11,6 +11,6 @@ urlpatterns = [
     path("eliminarplaca/<placa_id>", views.eliminar_placas, name="Eliminar Placas"),
     path("actualizarplaca/<placa_id>", views.actualizar_placa, name="Actualizar Placas"),
     path("listaplacas/", views.PlacaList.as_view(), name="List"),
-    path("detalleplacas<placa_id>/", views.PlacaDetailView.as_view(), name="List"),
+    path("detalleplacas/<pk>", views.PlacaDetailView.as_view(), name="Detail"),
 
 ]

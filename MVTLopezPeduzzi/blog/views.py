@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from blog.models import Placas_de_video, Fuentes, Perifericos
 from .forms import PlacasForm, FuentesForm, PerifericosForm
 
@@ -155,3 +156,6 @@ class PlacaList(ListView):
 class PlacaDetailView(DetailView):
     model = Placas_de_video
     template_name = "blog/placas_detalle.html"
+
+
+
