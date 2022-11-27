@@ -1,14 +1,23 @@
 <form action="" method="post"> {% csrf_token %}
 
-    <h3>Placas de video</h3>
+    <h1>Computacion DLP</h1>
+    <img src="https://carreras.unsl.edu.ar/static/carreras/ing-electronica.jpg" alt="">
+    <h2>Ingrese las Placas de video que desea cargar en la base de datos</h2>
+    <body>
+        Recuerde: Una vez ingresado el modelo, debera consultar su stock en el apartado "Placas en Stock"
+    </body>
     <table>
 
         {{formulario.as_table}}
+        
     </table>
 
     <button type="submit" value="Enviar">Enviar</button>
+    
+
 
 
 
 </form>
 
+<footer>Created by DLP</footer>

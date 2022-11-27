@@ -2,13 +2,24 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from blog.models import Placas_de_video, Fuentes, Perifericos
-from .forms import PlacasForm, FuentesForm, PerifericosForm
+from blog.models import Avatar,Placas_de_video, Fuentes, Perifericos
+from .forms import UserEditForm, PlacasForm, FuentesForm, PerifericosForm, SignUpForm
+#redireccion
+from django.urls import reverse_lazy
+#Aut
+from django.contrib.auth.views import LoginView, LogoutView
+#Decorados sirven para funciones
+from django.contrib.auth.decorators import login_required
+#mixins sirven para las clases 
+from django.contrib.auth.mixins import LoginRequiredMixin
+import datetime
 
-
+#@login_required
 def mostrar_index(request):
 
-    return render(request,"blog/index.html")
+    imagenes = Avatar.objects.filter(user=request.user.id)
+
+    return render(request,"blog/index.html", {"url": imagenes[0].imagen.url})
 
 def mostrar_bienvenida(request):
     
@@ -17,6 +28,10 @@ def mostrar_bienvenida(request):
 
 
 def mostrar_placa(request):
+
+    
+
+  
 
     if request.method == "POST":
 
@@ -86,14 +101,14 @@ def mostrar_perifericos(request):
     return render (request, "blog/mostrar_perifericos.html", {"formulario": formulario})
 
 def buscar_componentes(request):
-
+    currentdate = datetime.date.today()
     data = request.GET.get("marca", "")
     error = ""
     if data :
         try:
             componentes = Fuentes.objects.get(marca = data)
 
-            return render (request, "blog/buscar_componentes.html", {"marca" : data , "componentes" : componentes})
+            return render (request, "blog/buscar_componentes.html", {"marca" : data , "componentes" : componentes , "currentdate" : currentdate})
 
         except Exception as exc:
             error = "No hay componentes en stock"
@@ -103,10 +118,11 @@ def buscar_componentes(request):
 def mostrar_placas(request):
 
     tarjeta = Placas_de_video.objects.all()
-
     context = {"tarjeta": tarjeta}
+    currentdate = datetime.date.today()
+    
 
-    return render (request, "blog/mostrar_placas.html", context=context)
+    return render (request, "blog/mostrar_placas.html",context,{"currentdate" : currentdate})
 
 def eliminar_placas(request, placa_id):
 
@@ -147,7 +163,39 @@ def actualizar_placa(request, placa_id):
 
         return render (request, "blog/actualizar_placa.html", {"formulario": formulario})
 
-class PlacaList(ListView):
+def editar_usuario(request):
+
+    usuario = request.user
+
+    if request.method == "POST":
+        usuario_form = UserEditForm(request.POST)
+        
+        if usuario_form.is_valid():
+
+            informacion = usuario_form.cleaned_data
+
+            usuario.username = informacion["username"]
+            usuario.email = informacion["email"]
+            usuario.password1 = informacion["password1"]
+            usuario.password2 = informacion["password2"]
+
+            usuario.save()
+
+            return render(request, "blog/index.html")
+
+        
+    else:
+        usuario_form = UserEditForm(initial={
+            "username": usuario.username,
+            "email": usuario.email,
+        })
+    return render(request, "blog/admin_update.html", {
+        "form": usuario_form,
+        "usuario": usuario
+    })
+
+
+class PlacaList(LoginRequiredMixin, ListView):
 
     model = Placas_de_video
     template_name = "blog/placas_list.html"
@@ -157,5 +205,25 @@ class PlacaDetailView(DetailView):
     model = Placas_de_video
     template_name = "blog/placas_detalle.html"
 
+
+class SignUpVieW(CreateView):
+
+    form_class = SignUpForm
+    success_url = reverse_lazy("Home")
+    template_name = "blog/registro.html"
+
+
+
+class AdminLoginView(LoginView):
+
+    template_name = "blog/login.html"
+
+class AdminLogoutView(LogoutView):
+
+    template_name = "blog/logout.html"
+
+
+
+    
 
 

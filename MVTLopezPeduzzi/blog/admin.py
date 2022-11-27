@@ -6,3 +6,5 @@ from blog.models import *
 admin.site.register(Placas_de_video)
 admin.site.register(Perifericos)
 admin.site.register(Fuentes)
+admin.site.register(Avatar)
+
