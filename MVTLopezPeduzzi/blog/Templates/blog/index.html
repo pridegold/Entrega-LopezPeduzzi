@@ -20,12 +20,14 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="btn btn-primary" href="{% url "Placas de video" %}">Placas de Video</a>
+                <a class="btn btn-primary" href="{% url "Ingresar Placa de Video a BD" %}">Ingresar Placa de Video a BD</a>
                 <a class="btn btn-primary" href="{% url "Fuentes" %}">Fuentes</a>
                 <a class="btn btn-primary" href="{% url "Perifericos" %}">Perifericos</a>
-                <a class="btn btn-primary" href="{% url "Buscar componentes" %}">Buscar componentes</a>
-                <a class="btn btn-primary" href="{% url "Placas en Stock" %}">Placas en Stock</a>
-                <a class="btn btn-primary" href="{% url "List" %}">Mostrar Lista</a>
+                <a class="btn btn-primary" href="{% url "Placas de Video en Stock" %}">Placas de Video en Stock</a>
+                <a class="btn btn-primary" href="{% url "Fuentes en Stock" %}">Fuentes en Stock</a>
+                <a class="btn btn-primary" href="{% url "Perifericos en Stock" %}">Perifericos en Stock</a>
+                <a class="btn btn-primary" href="{% url "Disponibilidad Inmediata" %}">Disponibilidad Inmediata</a>
+                <a class="btn btn-primary" href="{% url "Pages" %}">Pages</a>
                 {% if request.user.is_authenticated %}
                     <a class="btn btn-primary" href="{% url "Logout" %}">Logout</a>
                 

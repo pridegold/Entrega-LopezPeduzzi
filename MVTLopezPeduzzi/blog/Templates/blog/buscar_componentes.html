@@ -1,4 +1,7 @@
-<h1>Placas en Stock a la fecha {{currentdate}}</h1>
+
+
+<h1>Ingrese las Placas de video que desea consultar en la base de datos.</h1>
+
 <form action="" method="get">
 
     <input type="text" name="marca">
@@ -11,5 +14,16 @@
 {% endif %}
 
 {% if componentes %}
-<p>{{componentes.marca}} {{componentes.Watts}}</p>
+<p>{{componentes.marca}} {{componentes.nombre}}</p>
 {% endif %}
+
+
+<img src="https://media.istockphoto.com/id/1129032734/es/foto/render-3d-de-futurista-azul-de-circuitos.jpg?s=612x612&w=0&k=20&c=jW0G04ukPumoVNPSke3FG_A9o-t5uWn5E1zUY6rGFI8=" alt="">
+<h3>Unidad en stock {{currentdate}}</h3>
+
+
+
+
+
+
+<footer>Si la placa se encuentra en stock, se mostrara junto con el horario de consulta.</footer>

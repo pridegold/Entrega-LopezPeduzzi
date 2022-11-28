@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import datetime
 
-#@login_required
+
 def mostrar_index(request):
 
     imagenes = Avatar.objects.filter(user=request.user.id)
@@ -26,13 +26,9 @@ def mostrar_bienvenida(request):
     return render(request, "blog/bienvenida.html")
 
 
-
+@login_required
 def mostrar_placa(request):
-
-    
-
-  
-
+    currentdate = datetime.datetime.today()
     if request.method == "POST":
 
         formulario = PlacasForm(request.POST)
@@ -52,9 +48,10 @@ def mostrar_placa(request):
         formulario = PlacasForm()
 
  
-    return render (request, "blog/mostrar_placa.html", {"formulario": formulario})
-
+    return render (request, "blog/mostrar_placa.html", {"formulario": formulario, "currentdate" : currentdate})
+@login_required
 def mostrar_fuente(request):
+    currentdate = datetime.datetime.today()
 
     if request.method == "POST":
 
@@ -75,9 +72,10 @@ def mostrar_fuente(request):
         formulario = FuentesForm()
 
  
-    return render (request, "blog/mostrar_fuente.html", {"formulario": formulario})
-
+    return render (request, "blog/mostrar_fuente.html", {"formulario": formulario, "currentdate" : currentdate})
+@login_required
 def mostrar_perifericos(request):
+    currentdate = datetime.datetime.today()
 
     if request.method == "POST":
 
@@ -98,15 +96,15 @@ def mostrar_perifericos(request):
         formulario = PerifericosForm()
 
  
-    return render (request, "blog/mostrar_perifericos.html", {"formulario": formulario})
+    return render (request, "blog/mostrar_perifericos.html", {"formulario": formulario, "currentdate" : currentdate})
 
 def buscar_componentes(request):
-    currentdate = datetime.date.today()
+    currentdate = datetime.datetime.today()
     data = request.GET.get("marca", "")
     error = ""
     if data :
         try:
-            componentes = Fuentes.objects.get(marca = data)
+            componentes = Placas_de_video.objects.get(marca = data)
 
             return render (request, "blog/buscar_componentes.html", {"marca" : data , "componentes" : componentes , "currentdate" : currentdate})
 
@@ -115,15 +113,45 @@ def buscar_componentes(request):
     
     return render (request, "blog/buscar_componentes.html", {"error" : error})
 
+def buscar_componentes1(request):
+    currentdate = datetime.datetime.today()
+    data = request.GET.get("marca", "")
+    error = ""
+    if data :
+        try:
+            componentes = Fuentes.objects.get(marca = data)
+
+            return render (request, "blog/buscar_componentes1.html", {"marca" : data , "componentes" : componentes , "currentdate" : currentdate})
+
+        except Exception as exc:
+            error = "No hay componentes en stock"
+    
+    return render (request, "blog/buscar_componentes1.html", {"error" : error})
+
+def buscar_componentes2(request):
+    currentdate = datetime.datetime.today()
+    data = request.GET.get("marca", "")
+    error = ""
+    if data :
+        try:
+            componentes = Perifericos.objects.get(marca = data)
+
+            return render (request, "blog/buscar_componentes2.html", {"marca" : data , "componentes" : componentes , "currentdate" : currentdate})
+
+        except Exception as exc:
+            error = "No hay componentes en stock"
+    
+    return render (request, "blog/buscar_componentes2.html", {"error" : error})
+
 def mostrar_placas(request):
 
     tarjeta = Placas_de_video.objects.all()
     context = {"tarjeta": tarjeta}
-    currentdate = datetime.date.today()
+    
     
 
-    return render (request, "blog/mostrar_placas.html",context,{"currentdate" : currentdate})
-
+    return render (request, "blog/mostrar_placas.html",context)
+@login_required
 def eliminar_placas(request, placa_id):
 
     placas = Placas_de_video.objects.get(id= placa_id)
@@ -137,7 +165,7 @@ def eliminar_placas(request, placa_id):
     return render (request, "blog/mostrar_placas.html", context=context)
 
 
-
+@login_required
 def actualizar_placa(request, placa_id):
 
     Placas = Placas_de_video.objects.get(id= placa_id)
@@ -183,6 +211,8 @@ def editar_usuario(request):
 
             return render(request, "blog/index.html")
 
+
+
         
     else:
         usuario_form = UserEditForm(initial={
@@ -194,7 +224,9 @@ def editar_usuario(request):
         "usuario": usuario
     })
 
+def mostrar_pages(request):
 
+    return render (request, "blog/pages.html")
 class PlacaList(LoginRequiredMixin, ListView):
 
     model = Placas_de_video
@@ -209,7 +241,7 @@ class PlacaDetailView(DetailView):
 class SignUpVieW(CreateView):
 
     form_class = SignUpForm
-    success_url = reverse_lazy("Home")
+    success_url = reverse_lazy("Bienvenida")
     template_name = "blog/registro.html"
 
 

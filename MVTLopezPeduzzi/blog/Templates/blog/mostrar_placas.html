@@ -1,5 +1,4 @@
-<header class="py-3 bg-light border-bottom mb-3" style="background-image: url(https://i.ytimg.com/vi/TRyPk4_JTjY/maxresdefault.jpg); background-position: center; background-repeat: no-repeat; background-size: 15%;">
-
+<header class="py-3 bg-light border-bottom mb-3" style="background-image: url(https://i.ytimg.com/vi/TRyPk4_JTjY/maxresdefault.jpg); background-position: center; background-repeat: no-repeat; background-size: 50%;">
 
 {% for tarjetas in tarjeta %}
 
@@ -8,10 +7,10 @@
 
 
 
-<p> 
-    Placas en Stock a la fecha {{currentdate}}
-    id: {{tarjetas.id}}
-    Nombre: {{tarjetas.nombre}}  Marca: {{tarjetas.marca}}</p>
+    
+    <h1>Código Producto {{tarjetas.id}}</h1>
+    <h2>Nombre: {{tarjetas.nombre}}</h2>  
+    <h3>Marca: {{tarjetas.marca}}</h3>
 
 <button>
     <a href="{% url "Eliminar Placas" tarjetas.id %}">Eliminar</a>

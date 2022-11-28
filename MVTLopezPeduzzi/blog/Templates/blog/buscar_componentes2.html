@@ -1,0 +1,29 @@
+
+
+<h1>Ingrese los Perifericos que desea consultar en la base de datos.</h1>
+
+<form action="" method="get">
+
+    <input type="text" name="marca">
+    <input type="submit" value="Buscar">
+
+</form>
+
+{% if error %}
+<p>{{error}}</p>
+{% endif %}
+
+{% if componentes %}
+<p>{{componentes.marca}} {{componentes.tipo}} {{componentes.modelo}}</p>
+{% endif %}
+
+
+<img src="https://hardzone.es/app/uploads-hardzone.es/2020/08/perifericos-logitech-g-1268x664-1.jpg" alt="">
+<h3>Unidad en stock {{currentdate}}</h3>
+
+
+
+
+
+
+<footer>Si los Perifericos se encuentra en stock, se mostrara junto con el horario de consulta.</footer>

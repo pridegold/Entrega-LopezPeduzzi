@@ -1,0 +1,29 @@
+
+
+<h1>Ingrese las Fuentes que desea consultar en la base de datos.</h1>
+
+<form action="" method="get">
+
+    <input type="text" name="marca">
+    <input type="submit" value="Buscar">
+
+</form>
+
+{% if error %}
+<p>{{error}}</p>
+{% endif %}
+
+{% if componentes %}
+<p>{{componentes.marca}} {{componentes.Watts}}</p>
+{% endif %}
+
+
+<img src="https://www.vichaunter.org/wp-content/uploads/2016/05/que-fuente-alimentacion-pc-elegir.jpg" alt="">
+<h3>Unidad en stock {{currentdate}}</h3>
+
+
+
+
+
+
+<footer>Si la fuente se encuentra en stock, se mostrara junto con el horario de consulta.</footer>
