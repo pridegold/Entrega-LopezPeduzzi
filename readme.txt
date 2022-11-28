@@ -6,7 +6,4 @@
 
 - La pagina redireccionara a la presentacion del blog, con sus diferentes accesos.
 
-- En cada uno de ellos se podra ingresar informacion de los componentes deseados.
-
-- Mediante la seccion de buscar componentes, podremos visualizar si hay dichos componentes ingresados en stock.
-
+- En About Tendremos toda la informacion necesario de como manejar el blog.
