@@ -1,6 +1,6 @@
 <form action="" method="post"> {% csrf_token %}
     <p>Fecha {{currentdate}}</p>
-    <h1>Computacion DLP</h1>
+    <h1><ins>Computacion DLP</ins></h1>
     <img src="https://gagadget.com/media/cache/f8/c3/f8c30141639d82f9103d9bc973623ab5.jpg" alt="">
     <h2>Ingrese el modelo de fuente que desea cargar en la base de datos</h2>
     <body>
@@ -17,4 +17,7 @@
 
 </form>
 
-<footer>Created by DLP</footer>
+<footer>
+    <strong>Created by DLP</strong>
+</footer>
+<button><a href="{% url "Welcome" %}">Volver</a></button>

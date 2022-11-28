@@ -8,9 +8,9 @@
 
 
     
-    <h1>Código Producto {{tarjetas.id}}</h1>
+    <h1 style="color:red;">Código Producto {{tarjetas.id}}</h1>
     <h2>Nombre: {{tarjetas.nombre}}</h2>  
-    <h3>Marca: {{tarjetas.marca}}</h3>
+    <h3 style="color:gray;">Marca: {{tarjetas.marca}}</h3>
 
 <button>
     <a href="{% url "Eliminar Placas" tarjetas.id %}">Eliminar</a>
@@ -22,4 +22,7 @@
 
 {% endfor %}
 
+<button><a href="{% url "Welcome" %}">Volver</a></button>
 
+
+<p ></p>

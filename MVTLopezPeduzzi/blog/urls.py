@@ -2,7 +2,7 @@ from django.urls import path
 from blog import views
 urlpatterns = [
     path("index/", views.mostrar_index, name ="Home"),
-    path("bienvenida/", views.mostrar_bienvenida),
+    path("bienvenida/", views.mostrar_bienvenida, name="Welcome"),
     path("placas/", views.mostrar_placa, name="Ingresar Placa de Video a BD"),
     path("fuentes/", views.mostrar_fuente, name="Fuentes"),
     path("perifericos/", views.mostrar_perifericos, name="Perifericos"),
@@ -19,4 +19,6 @@ urlpatterns = [
     path("logout/", views.AdminLogoutView.as_view(), name = "Logout"),
     path("editar_usuario/", views.editar_usuario, name="Editar Usuario"),
     path("pages/", views.mostrar_pages, name= "Pages"),
+    path("about/", views.mostrar_about, name= "About"),
+    path("nodisponible/", views.no_disponible, name= "NO"),
 ]

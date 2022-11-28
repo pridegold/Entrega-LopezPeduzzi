@@ -227,6 +227,14 @@ def editar_usuario(request):
 def mostrar_pages(request):
 
     return render (request, "blog/pages.html")
+
+def mostrar_about(request):
+
+    return render (request, "blog/about.html")
+
+def no_disponible(request):
+
+    return render (request, "blog/nodisponible.html")
 class PlacaList(LoginRequiredMixin, ListView):
 
     model = Placas_de_video
