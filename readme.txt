@@ -6,4 +6,4 @@
 
 - La pagina redireccionara a la presentacion del blog, con sus diferentes accesos.
 
-- En About Tendremos toda la informacion necesario de como manejar el blog.
+- En Pages Tendremos toda la informacion necesario de como manejar el blog.
