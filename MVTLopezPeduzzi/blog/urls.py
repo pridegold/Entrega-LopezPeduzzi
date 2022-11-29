@@ -15,10 +15,11 @@ urlpatterns = [
     path("listaplacas/", views.PlacaList.as_view(), name="List"),
     path("detalleplacas/<pk>", views.PlacaDetailView.as_view(), name="Detail"),
     path("signup/", views.SignUpVieW.as_view(), name="Sign Up"),
-    path("login/", views.AdminLoginView.as_view(), name="Login"),
     path("logout/", views.AdminLogoutView.as_view(), name = "Logout"),
+    path("login/", views.AdminLoginView.as_view(), name = "Login"),
     path("editar_usuario/", views.editar_usuario, name="Editar Usuario"),
     path("pages/", views.mostrar_pages, name= "Pages"),
     path("about/", views.mostrar_about, name= "About"),
     path("nodisponible/", views.no_disponible, name= "NO"),
+    
 ]

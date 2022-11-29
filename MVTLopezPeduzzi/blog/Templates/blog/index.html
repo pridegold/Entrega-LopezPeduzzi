@@ -45,7 +45,10 @@
                         <div class="text-center text-white">
                             <!-- Page heading-->
                             {% if request.user.is_authenticated %}
-                                <img src="{{url}}" alt="">
+                                {% if url %}
+                                    <img src="{{url}}" alt="">
+                                {% else %}
+                                {% endif %}
                                 <h1 class="mb-5">Hola {{user.username}}</h1>
                             {% else %}
                             <h1 class="mb-5">Hola invitado</h1>

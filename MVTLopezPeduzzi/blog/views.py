@@ -14,12 +14,22 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import datetime
 
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
+
 
 def mostrar_index(request):
 
     imagenes = Avatar.objects.filter(user=request.user.id)
 
-    return render(request,"blog/index.html", {"url": imagenes[0].imagen.url})
+    if not imagenes.exists():
+        url = None
+    else:
+        url = imagenes[0].imagen.url
+
+
+    return render(request,"blog/index.html", {"url":url})
 
 def mostrar_bienvenida(request):
     
@@ -104,7 +114,9 @@ def buscar_componentes(request):
     error = ""
     if data :
         try:
-            componentes = Placas_de_video.objects.get(marca = data)
+            componentes = Placas_de_video.objects.filter(marca = data)
+
+            print(f'funciona {componentes}')
 
             return render (request, "blog/buscar_componentes.html", {"marca" : data , "componentes" : componentes , "currentdate" : currentdate})
 
@@ -119,7 +131,7 @@ def buscar_componentes1(request):
     error = ""
     if data :
         try:
-            componentes = Fuentes.objects.get(marca = data)
+            componentes = Fuentes.objects.filter(marca = data)
 
             return render (request, "blog/buscar_componentes1.html", {"marca" : data , "componentes" : componentes , "currentdate" : currentdate})
 
@@ -134,7 +146,7 @@ def buscar_componentes2(request):
     error = ""
     if data :
         try:
-            componentes = Perifericos.objects.get(marca = data)
+            componentes = Perifericos.objects.filter(marca = data)
 
             return render (request, "blog/buscar_componentes2.html", {"marca" : data , "componentes" : componentes , "currentdate" : currentdate})
 
@@ -249,7 +261,7 @@ class PlacaDetailView(DetailView):
 class SignUpVieW(CreateView):
 
     form_class = SignUpForm
-    success_url = reverse_lazy("Bienvenida")
+    success_url = reverse_lazy("Welcome")
     template_name = "blog/registro.html"
 
 
@@ -262,8 +274,5 @@ class AdminLogoutView(LogoutView):
 
     template_name = "blog/logout.html"
 
-
-
-    
 
 
